@@ -1,4 +1,6 @@
 using BelajarAPI.Context;
+using BelajarAPI.Repositories;
+using BelajarAPI.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContexts>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 

@@ -17,7 +17,4 @@ public class Users
 	
 	[Required, Column("email")]
 	public String Email { get; set; }
-	
-	[Required, Column("user_access")]
-	public UserAccess UserAccess { get; set; }
 }
