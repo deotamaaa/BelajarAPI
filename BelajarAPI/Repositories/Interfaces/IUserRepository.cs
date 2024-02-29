@@ -4,13 +4,15 @@ namespace BelajarAPI.Repositories.Interfaces;
 
 public interface IUserRepository
 {
-	public string CreateUser();
+	public string CreateUser(Users user);
+	
+	public bool ValidateEmail(string email);
 	
 	public List<Users?> GetUser();
 	
-	public Users GetUserById();
+	public Users? GetUserById(Guid id);
 	
-	public Users UpdateUser();
+	public bool UpdateUser(Users user);
 
-	public string DeleteUser();
+	public bool DeleteUser(Guid id);
 }

@@ -1,6 +1,6 @@
 namespace BelajarAPI.DTO;
 
-public class ApiMessage<T>
+public class ApiMessage<T> where T : class
 {
 	public int? StatusCode { get; set; }
 
