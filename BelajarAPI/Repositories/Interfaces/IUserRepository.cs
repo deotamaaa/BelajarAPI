@@ -4,7 +4,7 @@ namespace BelajarAPI.Repositories.Interfaces;
 
 public interface IUserRepository
 {
-	public string CreateUser(Users user);
+	public Users CreateUser(Users user);
 	
 	public bool ValidateEmail(string email);
 	

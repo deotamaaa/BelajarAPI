@@ -1,7 +1,9 @@
 using System.Net;
 using BelajarAPI.DTO;
+using BelajarAPI.Helper;
 using BelajarAPI.Models;
 using BelajarAPI.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BelajarAPI.Controllers;
@@ -27,10 +29,10 @@ public class UsersController : ControllerBase
 			if (!validateEmail)
 			{
 				var result = _userRepository.CreateUser(user);
-				return result;
+				return "Success";
 			}
 
-			return "Email has been used!";
+			return "Failed";
 		}
 		catch (Exception e)
 		{
@@ -39,12 +41,14 @@ public class UsersController : ControllerBase
 		}
 	}
 
+	[Authorize]
 	[HttpGet]
 	[Route("get-user")]
 	public List<Users> GetUser()
 	{
 		try
 		{
+			
 			var result = _userRepository.GetUser();
 			return result;
 		}
@@ -61,6 +65,7 @@ public class UsersController : ControllerBase
 	{
 		try
 		{
+			
 			var data = _userRepository.GetUserById(id);
 			if (data == null)
 			{
@@ -157,4 +162,5 @@ public class UsersController : ControllerBase
 			throw;
 		}
 	}
+	
 }

@@ -10,12 +10,12 @@ public class UserAccess
 	public Guid Id { get; set; }
 	
 	[Required, Column("user_id")]
-	public String UserId { get; set; }
+	public Guid UserId { get; set; }
 	
 	[Required, Column("username")]
-	public String Username { get; set; }
+	public string Username { get; set; }
 	
 	[Required, Column("password")]
-	public String Password { get; set; }
+	public string Password { get; set; }
 	
 }

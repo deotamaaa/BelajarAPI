@@ -13,7 +13,7 @@ public class UserRepository : IUserRepository
 	}
 
 
-	public string CreateUser(Users user)
+	public Users CreateUser(Users user)
 	{
 		try
 		{
@@ -21,7 +21,7 @@ public class UserRepository : IUserRepository
 			user.UsersId = id;
 			_contexts.Users?.Add(user);
 			_contexts.SaveChanges();
-			return "User has been created successfully!";
+			return user;
 		}
 		catch (Exception e)
 		{
@@ -34,8 +34,8 @@ public class UserRepository : IUserRepository
 	{
 		try
 		{
-			var validate = _contexts.Users.AsQueryable().Where(x => x.Email == email).ToList();
-			if (validate.Count > 0)
+			var validate = _contexts.Users?.AsQueryable().Where(x => x.Email == email).ToList();
+			if (validate?.Count > 0)
 			{
 				return true;
 			}
