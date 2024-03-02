@@ -1,23 +1,30 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BelajarAPI.Models;
 
+[Table("tb_issue")]
 public class Issue
 {
-	public int Id { get; set; }
+	[Key, Column("id")]
+	public Guid Id { get; set; }
 
-	[Required]
+	[Required, Column("title")]
 	public string Title { get; set; }
 
-	[Required]
+	[Required, Column("description")]
 	public string Description { get; set; }
 	
+	[Required, Column("priority")]
 	public Priority Priority { get; set; }
 	
+	[Required, Column("issue_type")]
 	public IssueType IssueType { get; set; }
 
+	[Required, Column("created")]
 	public DateTime Created { get; set; }
 	
+	[Required, Column("completed")]
 	public DateTime? Completed { get; set; }
 }
 
