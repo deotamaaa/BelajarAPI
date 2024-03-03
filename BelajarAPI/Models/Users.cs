@@ -17,4 +17,6 @@ public class Users
 	
 	[Required, Column("email")]
 	public String Email { get; set; }
+	
+	public ICollection<Issue>? Issues { get; set; }
 }

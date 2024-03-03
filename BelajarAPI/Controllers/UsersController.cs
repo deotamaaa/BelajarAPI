@@ -48,7 +48,6 @@ public class UsersController : ControllerBase
 	{
 		try
 		{
-			
 			var result = _userRepository.GetUser();
 			return result;
 		}

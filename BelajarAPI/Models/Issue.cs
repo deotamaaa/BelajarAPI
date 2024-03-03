@@ -26,6 +26,11 @@ public class Issue
 	
 	[Required, Column("completed")]
 	public DateTime? Completed { get; set; }
+	
+	// Foreign Key
+	public Guid UserId { get; set; }
+	
+	public Users User { get; set; }
 }
 
 public enum Priority
