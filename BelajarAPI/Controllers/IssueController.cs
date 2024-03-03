@@ -138,5 +138,79 @@ public class IssueController : ControllerBase
 			Console.WriteLine(e);
 			throw new Exception(e.Message);
 		}
-	}	
+	}
+
+	[HttpPatch]
+	[Route("update-issue")]
+	public ActionResult UpdateIssue([FromBody]IssueUpdateRequest request)
+	{
+		try
+		{
+			var issue = _issueRepository.UpdateIssue(request);
+			if (issue == null)
+			{
+				return NotFound(new ApiMessage<Issue>
+				{
+					StatusCode = (int)HttpStatusCode.NotFound,
+					Status = "Not Found",
+					Message = "Issue not found.",
+					Data = null
+				});
+			}
+			return Ok(new ApiMessage<Issue>
+			{
+				StatusCode = (int)HttpStatusCode.OK,
+				Status = "Ok",
+				Message = "Issue Updated Successfully!",
+				Data = issue
+			});
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw new Exception(e.Message);
+		}
+	}
+	
+	[HttpDelete]
+	[Route("delete-issue")]
+	public ActionResult DeleteIssue([FromBody]Guid id)
+	{
+		try
+		{
+			var result = _issueRepository.DeleteIssue(id);
+			switch (result)
+			{
+				case 0:
+					return NotFound(new ApiMessage<string>
+					{
+						StatusCode = (int)HttpStatusCode.NotFound,
+						Status = "Not Found",
+						Message = "Issue not found.",
+						Data = null
+					});
+				case 1:
+					return Ok(new ApiMessage<string>
+					{
+						StatusCode = (int)HttpStatusCode.OK,
+						Status = "Ok",
+						Message = "Issue Deleted Successfully!",
+						Data = null
+					});
+				default:
+					return Ok(new ApiMessage<string>
+					{
+						StatusCode = (int)HttpStatusCode.OK,
+						Status = "Ok",
+						Message = "Issue Deleted Successfully!",
+						Data = null
+					});
+			}
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw new Exception(e.Message);
+		}
+	}
 }

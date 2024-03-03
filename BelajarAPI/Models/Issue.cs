@@ -10,10 +10,10 @@ public class Issue
 	public Guid Id { get; set; }
 
 	[Required, Column("title")]
-	public string Title { get; set; }
+	public string? Title { get; set; }
 
 	[Required, Column("description")]
-	public string Description { get; set; }
+	public string? Description { get; set; }
 	
 	[Required, Column("priority")]
 	public Priority Priority { get; set; }
